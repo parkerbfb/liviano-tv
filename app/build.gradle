@@ -1,0 +1,36 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'dev.liviano.tv'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'dev.liviano.tv'
+        minSdk 28
+        targetSdk 34
+        ndk { abiFilters 'armeabi-v7a' }
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    def media3 = '1.6.1'
+    implementation "androidx.media3:media3-exoplayer:$media3"
+    implementation "androidx.media3:media3-exoplayer-hls:$media3"
+    implementation "androidx.media3:media3-ui:$media3"
+    // Decodificador de audio por software (E-AC3/AC3/DTS/TrueHD) cuando la tele no los decodifica
+    implementation 'org.jellyfin.media3:media3-ffmpeg-decoder:1.6.1+2'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+}

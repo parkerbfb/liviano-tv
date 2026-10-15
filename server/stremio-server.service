@@ -1,0 +1,13 @@
+[Unit]
+Description=Servidor de streaming de Stremio (para Liviano en la tele)
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/stremio-server
+Environment=NO_CORS=1
+ExecStart=@NODE@ %h/stremio-server/server.js
+Restart=on-failure
+Nice=5
+
+[Install]
+WantedBy=default.target
